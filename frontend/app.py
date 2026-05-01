@@ -68,8 +68,7 @@ def main():
     st.markdown("""
     This tool predicts malignancy risk in Celiac Disease patients using machine learning.
     
-    **⚠️ DISCLAIMER:** This is a proof-of-concept using synthetic data. 
-    NOT intended for clinical decision-making.
+    **⚠️ DISCLAIMER:**NOT intended for clinical decision-making.
     """)
     
     st.markdown("---")
@@ -220,16 +219,16 @@ def main():
         with st.spinner("Analyzing patient data..."):
             result, error = predict_risk(patient_data)
         
-        if error:
-            st.error(f"❌ Error: {error}")
+        if error or not isinstance(result, dict):
+            st.error(f"❌ Error: {error or 'Invalid response from API. Please try again.'}")
         else:
             # Display results
             st.markdown("---")
             st.subheader("📋 Prediction Results")
             
-            risk_class = result['risk_class']
-            risk_score = result['risk_score']
-            message = result['message']
+            risk_class = result.get('risk_class', 'Low')
+            risk_score = result.get('risk_score', [0.0, 0.0, 0.0])
+            message = result.get('message', 'No response message returned.')
             
             # Main risk display with color coding
             risk_color = get_risk_color(risk_class)
@@ -312,8 +311,7 @@ def main():
     st.markdown("""
     <div style="text-align: center; color: #6c757d; font-size: 0.9em;">
         <p>
-            <strong>Important:</strong> This tool uses synthetic data and is for demonstration purposes only.<br>
-            Always consult with qualified healthcare professionals for medical decisions.
+            <strong>Important:</strong>Always consult with qualified healthcare professionals for medical decisions.
         </p>
     </div>
     """, unsafe_allow_html=True)
