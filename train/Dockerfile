@@ -6,10 +6,10 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy training script and entrypoint
-COPY train_model.py .
+# Copy training notebook and entrypoint
+COPY model_training_pipeline.ipynb .
 COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
+RUN sed -i 's/\r$//' entrypoint.sh && chmod +x entrypoint.sh
 
 # Run the entrypoint script
-CMD ["./entrypoint.sh"]
+CMD ["bash", "./entrypoint.sh"]

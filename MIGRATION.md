@@ -163,7 +163,7 @@ joblib.dump(final_model, 'celiac_risk_model.pkl')
 joblib.dump(metadata, 'model_metadata.pkl')
 ```
 
-**New (`train/train_model.py`):**
+**New (`train/model_training_pipeline.ipynb`):**
 ```python
 output_dir = os.getenv('MODEL_OUTPUT_DIR', '../models')
 os.makedirs(output_dir, exist_ok=True)
@@ -248,7 +248,7 @@ docker-compose up train
 
 # Or manually
 cd train
-python train_model.py
+jupyter nbconvert --to notebook --execute model_training_pipeline.ipynb --output model_training_pipeline.executed.ipynb
 ```
 
 ### Issue: "Cannot connect to backend"

@@ -84,7 +84,7 @@ cd train
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python train_model.py
+jupyter nbconvert --to notebook --execute model_training_pipeline.ipynb --output model_training_pipeline.executed.ipynb
 cd ..
 ```
 

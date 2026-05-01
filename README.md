@@ -102,7 +102,7 @@ cd train
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python train_model.py
+jupyter nbconvert --to notebook --execute model_training_pipeline.ipynb --output model_training_pipeline.executed.ipynb
 ```
 
 ## 📁 Project Structure
@@ -198,7 +198,7 @@ GET /model-info
 
 ### Adding New Features
 
-1. Update `train/train_model.py` to include new features in data generation
+1. Update `train/model_training_pipeline.ipynb` to include new features in data generation
 2. Update `backend/app.py` to accept new features in `PatientInput` model
 3. Update `frontend/app.py` to add new input fields
 4. Retrain the model

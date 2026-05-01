@@ -1,6 +1,6 @@
 # Training Service
 
-Model training script for the CeliGuard ML application.
+Model training notebook workflow for the CeliGuard ML application.
 
 ## Features
 
@@ -16,8 +16,8 @@ Model training script for the CeliGuard ML application.
 # Install dependencies
 pip install -r requirements.txt
 
-# Train the model
-python train_model.py
+# Execute the notebook non-interactively
+jupyter nbconvert --to notebook --execute model_training_pipeline.ipynb --output model_training_pipeline.executed.ipynb
 ```
 
 The trained models will be saved to the `../models` directory.
@@ -38,7 +38,7 @@ docker run -v ../models:/app/../models celiguard-train
 
 ## Output
 
-The script generates:
+The notebook generates:
 - `celiac_risk_model.pkl` - Trained Random Forest model
 - `model_metadata.pkl` - Model metadata and feature information
 
